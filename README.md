@@ -8,3 +8,4 @@
 ## AM8 - like an Anet A8
 
 But with SKR 1.4 turbo and S42A 42 Stepper Motor Closed Loop Driver Boards on all 5 motors.
+Running off a Raspberry Pi 3+ with Octoprint.
