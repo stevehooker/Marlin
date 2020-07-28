@@ -73,6 +73,7 @@
 // Author info of this build printed to the host during boot and M115
 //First make: 21 June 2020 
 //Second: 7th July 2020
+//third steppers 0.9 t8*2 Tue Jul 28 19:30:01 BST 2020
 #define STRING_CONFIG_H_AUTHOR "(Steve, dual z)" // Who made the changes.
 //#define CUSTOM_VERSION_FILE Version.h // Path from the root directory (no quotes)
 
@@ -748,7 +749,7 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 500 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 1600, 410 }
 
 /**
  * Default Max Feed Rate (mm/s)
@@ -1129,7 +1130,7 @@
 #define Z_MIN_POS 0
 #define X_MAX_POS X_BED_SIZE
 #define Y_MAX_POS Y_BED_SIZE
-#define Z_MAX_POS 240
+#define Z_MAX_POS 200
 
 /**
  * Software Endstops
