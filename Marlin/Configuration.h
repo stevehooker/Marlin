@@ -74,6 +74,7 @@
 //steps per unit and x_min_pos, manual_x_hom_pos, nozzle_to_probe_offset  Tue Jul 14 11:16:35 BST 2020
 //change to TMC2209  Sun Jul 19 16:48:45 BST 2020
 //add resolution with microsteps  Sun Aug 2 18:06:40 BST 2020
+//down to normal steps per unit, too hot  Tue Aug 4 09:47:35 BST 2020
 #define STRING_CONFIG_H_AUTHOR "(Steve, SKR 1.4 Turbo, TMC2209)" // Who made the changes.
 //#define CUSTOM_VERSION_FILE Version.h // Path from the root directory (no quotes)
 
@@ -746,7 +747,7 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 320, 320, 400, 409.13 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 100, 100, 400, 419.59 }
 
 /**
  * Default Max Feed Rate (mm/s)
