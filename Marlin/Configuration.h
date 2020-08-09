@@ -75,6 +75,7 @@
 //change to TMC2209  Sun Jul 19 16:48:45 BST 2020
 //add resolution with microsteps  Sun Aug 2 18:06:40 BST 2020
 //down to normal steps per unit, too hot  Tue Aug 4 09:47:35 BST 2020
+//hotter hot end 
 #define STRING_CONFIG_H_AUTHOR "(Steve, SKR 1.4 Turbo, TMC2209)" // Who made the changes.
 //#define CUSTOM_VERSION_FILE Version.h // Path from the root directory (no quotes)
 
@@ -463,7 +464,7 @@
 // Above this temperature the heater will be switched off.
 // This can protect components from overheating, but NOT from shorts and failures.
 // (Use MINTEMP for thermistor short/failure protection.)
-#define HEATER_0_MAXTEMP 275
+#define HEATER_0_MAXTEMP 335
 #define HEATER_1_MAXTEMP 275
 #define HEATER_2_MAXTEMP 275
 #define HEATER_3_MAXTEMP 275
