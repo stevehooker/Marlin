@@ -74,6 +74,7 @@
 //First make: 21 June 2020 
 //Second: 7th July 2020
 //third steppers 0.9 t8*2 Tue Jul 28 19:30:01 BST 2020
+//increase maxtemp frpm 260 to 320c
 #define STRING_CONFIG_H_AUTHOR "(Steve, dual z)" // Who made the changes.
 //#define CUSTOM_VERSION_FILE Version.h // Path from the root directory (no quotes)
 
@@ -462,7 +463,7 @@
 // Above this temperature the heater will be switched off.
 // This can protect components from overheating, but NOT from shorts and failures.
 // (Use MINTEMP for thermistor short/failure protection.)
-#define HEATER_0_MAXTEMP 275
+#define HEATER_0_MAXTEMP 335
 #define HEATER_1_MAXTEMP 275
 #define HEATER_2_MAXTEMP 275
 #define HEATER_3_MAXTEMP 275
@@ -749,7 +750,7 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 640, 640, 400, 456.04 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 640, 640, 400, 418 }
 
 /**
  * Default Max Feed Rate (mm/s)
