@@ -76,8 +76,10 @@
 //add resolution with microsteps  Sun Aug 2 18:06:40 BST 2020
 //down to normal steps per unit, too hot  Tue Aug 4 09:47:35 BST 2020
 //hotter hot end 
-// new xy 0.9 motors and 2mm z threads
-// change the WATCH_BED_TEMP_PERIOD to 180 secs up from 60 secs  Tue Aug 25 10:48:23 BST 2020
+//new xy 0.9 motors and 2mm z threads
+//change the WATCH_BED_TEMP_PERIOD to 180 secs up from 60 secs  Tue Aug 25 10:48:23 BST 2020
+//THERMAL_PROTECTION_BED_PERIOD from 20 > 120
+//THERMAL_PROTECTION_BED_HYSTERESIS from 2 > 6
 #define STRING_CONFIG_H_AUTHOR "(Steve, SKR 1.4 Turbo, TMC2209)" // Who made the changes.
 //#define CUSTOM_VERSION_FILE Version.h // Path from the root directory (no quotes)
 
