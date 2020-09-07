@@ -82,6 +82,7 @@
 //THERMAL_PROTECTION_BED_HYSTERESIS from 2 > 6
 // X_CURRENT_HOME  700 up from same = X2_CURRENT
 // Z_STEPPER_ALIGN_ACC has to be above zero
+// opened PIDTEMPBED for next time
 #define STRING_CONFIG_H_AUTHOR "(Steve, SKR 1.4 Turbo, TMC2209)" // Who made the changes.
 //#define CUSTOM_VERSION_FILE Version.h // Path from the root directory (no quotes)
 
@@ -533,7 +534,7 @@
  * heater. If your configuration is significantly different than this and you don't understand
  * the issues involved, don't use bed PID until someone else verifies that your hardware works.
  */
-//#define PIDTEMPBED
+#define PIDTEMPBED
 
 //#define BED_LIMIT_SWITCHING
 
