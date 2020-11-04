@@ -73,9 +73,9 @@
 // Author info of this build printed to the host during boot and M115
 //First make: 21 June 2020 
 //Second: 7th July 2020
-//third steppers 0.9 t8*2 Tue Jul 28 19:30:01 BST 2020
+//third steppers 0.9 t8*2 Tue Jul 28 19:30:01 BST 2020 - change steps/mm from 400 to 1600
 //increase maxtemp frpm 260 to 320c
-//increase z height 200 > 250mm
+//increase z height 200 > 245mm
 #define STRING_CONFIG_H_AUTHOR "(Steve, dual z)" // Who made the changes.
 //#define CUSTOM_VERSION_FILE Version.h // Path from the root directory (no quotes)
 
@@ -527,7 +527,7 @@
  * heater. If your configuration is significantly different than this and you don't understand
  * the issues involved, don't use bed PID until someone else verifies that your hardware works.
  */
-//#define PIDTEMPBED
+#define PIDTEMPBED
 
 //#define BED_LIMIT_SWITCHING
 
@@ -751,14 +751,14 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 640, 640, 400, 418 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 640, 640, 1600, 499 }
 
 /**
  * Default Max Feed Rate (mm/s)
  * Override with M203
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 300, 300, 10, 25 }
+#define DEFAULT_MAX_FEEDRATE          { 300, 300, 5, 25 }
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
 #if ENABLED(LIMITED_MAX_FR_EDITING)
@@ -1132,7 +1132,7 @@
 #define Z_MIN_POS 0
 #define X_MAX_POS X_BED_SIZE
 #define Y_MAX_POS Y_BED_SIZE
-#define Z_MAX_POS 250
+#define Z_MAX_POS 245
 
 /**
  * Software Endstops
