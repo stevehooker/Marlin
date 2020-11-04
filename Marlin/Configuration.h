@@ -75,6 +75,7 @@
 //Second: 7th July 2020
 //third steppers 0.9 t8*2 Tue Jul 28 19:30:01 BST 2020
 //increase maxtemp frpm 260 to 320c
+//increase z height 200 > 250mm
 #define STRING_CONFIG_H_AUTHOR "(Steve, dual z)" // Who made the changes.
 //#define CUSTOM_VERSION_FILE Version.h // Path from the root directory (no quotes)
 
@@ -1131,7 +1132,7 @@
 #define Z_MIN_POS 0
 #define X_MAX_POS X_BED_SIZE
 #define Y_MAX_POS Y_BED_SIZE
-#define Z_MAX_POS 200
+#define Z_MAX_POS 250
 
 /**
  * Software Endstops
