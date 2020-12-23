@@ -76,6 +76,7 @@
 //third steppers 0.9 t8*2 Tue Jul 28 19:30:01 BST 2020 - change steps/mm from 400 to 1600
 //increase maxtemp frpm 260 to 320c
 //increase z height 200 > 245mm
+// merging to bugfix
 #define STRING_CONFIG_H_AUTHOR "(Steve, dual z)" // Who made the changes.
 //#define CUSTOM_VERSION_FILE Version.h // Path from the root directory (no quotes)
 
@@ -545,6 +546,9 @@
 
   //120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
   //from FOPDT model - kp=.39 Tp=405 Tdead=66, Tc set to 79.2, aggressive factor of .15 (vs .1, 1, 10)
+#define DEFAULT_bedKp 229.90
+#define DEFAULT_bedKi 41.16
+#define DEFAULT_bedKd 856.16
 
   //120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
   //from pidautotune
