@@ -494,9 +494,9 @@
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
 
   // Ultimaker
-  #define DEFAULT_Kp 14.67
-  #define DEFAULT_Ki 0.93
-  #define DEFAULT_Kd 57.70
+#define DEFAULT_Kp 14.28
+#define DEFAULT_Ki 0.74
+#define DEFAULT_Kd 69.05
 
   // MakerGear
   //#define DEFAULT_Kp 7.0
@@ -545,9 +545,6 @@
 
   //120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
   //from FOPDT model - kp=.39 Tp=405 Tdead=66, Tc set to 79.2, aggressive factor of .15 (vs .1, 1, 10)
-  #define DEFAULT_bedKp 10.00
-  #define DEFAULT_bedKi .023
-  #define DEFAULT_bedKd 305.4
 
   //120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
   //from pidautotune
@@ -751,7 +748,7 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 800, 800, 800, 499 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 800, 640, 800, 425.4 }
 
 /**
  * Default Max Feed Rate (mm/s)
@@ -987,7 +984,7 @@
  *
  * Specify a Probe position as { X, Y, Z }
  */
-#define NOZZLE_TO_PROBE_OFFSET { 29, 0, -0.9 }
+#define NOZZLE_TO_PROBE_OFFSET { 29, 0, -1.15 }
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
@@ -1123,16 +1120,16 @@
 // @section machine
 
 // The size of the print bed
-#define X_BED_SIZE 310
-#define Y_BED_SIZE 310
+#define X_BED_SIZE 300
+#define Y_BED_SIZE 300
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
-#define X_MIN_POS -65
-#define Y_MIN_POS -23
+#define X_MIN_POS -68
+#define Y_MIN_POS -27
 #define Z_MIN_POS 0
 #define X_MAX_POS X_BED_SIZE
 #define Y_MAX_POS Y_BED_SIZE
-#define Z_MAX_POS 650
+#define Z_MAX_POS 590
 
 /**
  * Software Endstops
