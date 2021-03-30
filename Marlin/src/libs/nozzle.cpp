@@ -16,7 +16,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  */
 
@@ -31,6 +31,10 @@ Nozzle nozzle;
 #include "../MarlinCore.h"
 #include "../module/motion.h"
 
+#if NOZZLE_CLEAN_MIN_TEMP > 20
+  #include "../module/temperature.h"
+#endif
+
 #if ENABLED(NOZZLE_CLEAN_FEATURE)
 
   /**
@@ -42,19 +46,30 @@ Nozzle nozzle;
    * @param strokes number of strokes to execute
    */
   void Nozzle::stroke(const xyz_pos_t &start, const xyz_pos_t &end, const uint8_t &strokes) {
-    TERN_(NOZZLE_CLEAN_GOBACK, const xyz_pos_t oldpos = current_position);
+    #if ENABLED(NOZZLE_CLEAN_GOBACK)
+      const xyz_pos_t oldpos = current_position;
+    #endif
 
     // Move to the starting point
     #if ENABLED(NOZZLE_CLEAN_NO_Z)
-      do_blocking_move_to_xy(start);
+      #if ENABLED(NOZZLE_CLEAN_NO_Y)
+        do_blocking_move_to_x(start.x);
+      #else
+        do_blocking_move_to_xy(start);
+      #endif
     #else
       do_blocking_move_to(start);
     #endif
 
     // Start the stroke pattern
     LOOP_L_N(i, strokes >> 1) {
-      do_blocking_move_to_xy(end);
-      do_blocking_move_to_xy(start);
+      #if ENABLED(NOZZLE_CLEAN_NO_Y)
+        do_blocking_move_to_x(end.x);
+        do_blocking_move_to_x(start.x);
+      #else
+        do_blocking_move_to_xy(end);
+        do_blocking_move_to_xy(start);
+      #endif
     }
 
     TERN_(NOZZLE_CLEAN_GOBACK, do_blocking_move_to(oldpos));
@@ -73,7 +88,9 @@ Nozzle nozzle;
     const xy_pos_t diff = end - start;
     if (!diff.x || !diff.y) return;
 
-    TERN_(NOZZLE_CLEAN_GOBACK, const xyz_pos_t back = current_position);
+    #if ENABLED(NOZZLE_CLEAN_GOBACK)
+      const xyz_pos_t back = current_position;
+    #endif
 
     #if ENABLED(NOZZLE_CLEAN_NO_Z)
       do_blocking_move_to_xy(start);
@@ -116,7 +133,9 @@ Nozzle nozzle;
   void Nozzle::circle(const xyz_pos_t &start, const xyz_pos_t &middle, const uint8_t &strokes, const float &radius) {
     if (strokes == 0) return;
 
-    TERN_(NOZZLE_CLEAN_GOBACK, const xyz_pos_t back = current_position);
+    #if ENABLED(NOZZLE_CLEAN_GOBACK)
+      const xyz_pos_t back = current_position;
+    #endif
     TERN(NOZZLE_CLEAN_NO_Z, do_blocking_move_to_xy, do_blocking_move_to)(start);
 
     LOOP_L_N(s, strokes)
@@ -144,6 +163,19 @@ Nozzle nozzle;
 
     const uint8_t arrPos = ANY(SINGLENOZZLE, MIXING_EXTRUDER) ? 0 : active_extruder;
 
+    #if NOZZLE_CLEAN_MIN_TEMP > 20
+      if (thermalManager.degTargetHotend(arrPos) < NOZZLE_CLEAN_MIN_TEMP) {
+        #if ENABLED(NOZZLE_CLEAN_HEATUP)
+          SERIAL_ECHOLNPGM("Nozzle too Cold - Heating");
+          thermalManager.setTargetHotend(NOZZLE_CLEAN_MIN_TEMP, arrPos);
+          thermalManager.wait_for_hotend(arrPos);
+        #else
+          SERIAL_ECHOLNPGM("Nozzle too cold - Skipping wipe");
+          return;
+        #endif
+      }
+    #endif
+
     #if HAS_SOFTWARE_ENDSTOPS
 
       #define LIMIT_AXIS(A) do{ \
@@ -152,7 +184,7 @@ Nozzle nozzle;
         LIMIT(   end[arrPos].A, soft_endstop.min.A, soft_endstop.max.A); \
       }while(0)
 
-      if (soft_endstops_enabled) {
+      if (soft_endstop.enabled()) {
 
         LIMIT_AXIS(x);
         LIMIT_AXIS(y);

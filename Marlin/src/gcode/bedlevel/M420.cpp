@@ -16,7 +16,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  */
 
@@ -30,7 +30,7 @@
 #include "../../module/probe.h"
 
 #if ENABLED(EEPROM_SETTINGS)
-  #include "../../module/configuration_store.h"
+  #include "../../module/settings.h"
 #endif
 
 #if ENABLED(EXTENSIBLE_UI)
@@ -156,16 +156,16 @@ void GcodeSuite::M420() {
             GRID_LOOP(x, y) mesh_sum += Z_VALUES(x, y);
             const float zmean = mesh_sum / float(GRID_MAX_POINTS);
 
-          #else
+          #else // midrange
 
-            // Find the low and high mesh values
+            // Find the low and high mesh values.
             float lo_val = 100, hi_val = -100;
             GRID_LOOP(x, y) {
               const float z = Z_VALUES(x, y);
               NOMORE(lo_val, z);
               NOLESS(hi_val, z);
             }
-            // Take the mean of the lowest and highest
+            // Get the midrange plus C value. (The median may be better.)
             const float zmean = (lo_val + hi_val) / 2.0 + cval;
 
           #endif

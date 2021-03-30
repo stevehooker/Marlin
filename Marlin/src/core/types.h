@@ -16,7 +16,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  */
 #pragma once
@@ -72,10 +72,15 @@ struct IF<true, L, R> { typedef L type; };
 //
 typedef float feedRate_t;
 
+//
+// celsius_t is the native unit of temperature. Signed to handle a disconnected thermistor value (-14).
+// For more resolition (e.g., for a chocolate printer) this may later be changed to Celsius x 100
+//
+typedef int16_t celsius_t;
+
 // Conversion macros
 #define MMM_TO_MMS(MM_M) feedRate_t(float(MM_M) / 60.0f)
 #define MMS_TO_MMM(MM_S) (float(MM_S) * 60.0f)
-#define MMS_SCALED(V)    ((V) * 0.01f * feedrate_percentage)
 
 //
 // Coordinates structures for XY, XYZ, XYZE...
